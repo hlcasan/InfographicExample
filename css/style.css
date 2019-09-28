@@ -13,6 +13,7 @@ body {
 .wrapper section {
 	border: solid black 0.5px;
 	padding: 1em;
+	height: 100%;
 }
 
 h2 {

@@ -44,7 +44,8 @@ var chart = function () {
 			document.getElementById("container").innerHTML = "";
 			for (let c in itemRaw) {
 				//let randL = 20 + (Math.random() * 75); //20-95
-				let light = 20 + ((95 / itemRaw.length) * c);
+				//let light = 20 + ((95 / itemRaw.length) * c);
+				let light = (255 / itemRaw.length) * c;
 				//console.log("l = "+ light + "c:" + c);
 
 				let cat = document.createElement("div");
@@ -56,7 +57,8 @@ var chart = function () {
 				let bar = document.createElement("div");
 				bar.className = "bar";
 				//bar.style.background = "hsl(100,60%,"+randL+"%)";
-				bar.style.background = "hsl(100,60%,"+light+"%)";
+				//bar.style.background = "hsl(100,60%,"+light+"%)";
+				bar.style.background = "hsl("+light+",60%,50%)";
 
 				label.innerHTML = itemRaw[c].category;
 				//bar.style.width = (Number(itemRaw[c].amount) * 2) + "px";
