@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<title>Example Infographic</title>
+<link rel="stylesheet" href="css/style.css">
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+<h1>Example Infographic</h1>
+</header>
+
+<div class="wrapper">
+
+<section>
+<h2>Simple Expenses Report</h2>
+<div class="" id="container">
+<!--<div class="category"><span class="label">category 1</span><span class="bar"></span></div>-->
+</div>
+</section>
+
+<section class="hide">
+    <h2>Google Chart</h2>
+    <div id="chart_div"></div>
+</section>
+<script src="app/getData.js"></script>
+
+<section id="formContainer">
+<h2>Add Expense</h2>
+<div class="formBox"><form id="addExpense">
+    <div><label for="category">Category</label>
+    <input type="text" name="category" list="cat_suggestions">
+    <datalist id="cat_suggestions"></datalist>
+    </div> 
+
+    <div>
+    <label cor="amount">Amount</label>
+    <input type="number" name="amount">
+    </div>
+
+    <div class="button">
+    <input type="submit" value="Add">
+    </div>
+</form></div>
+</section>
+<script src="app/setData.js"></script>
+
+</div><!--wrapper-->
+
+<nav>
+    <span id="formBttn"><svg id="arrrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M10,3a7,7,0,1,1-7,7,7,7,0,0,1,7-7m0-2a9,9,0,1,0,9,9,9,9,0,0,0-9-9Z"/>
+        <polygon points="10 5.5 5.45 13.38 14.55 13.38 10 5.5"/>
+    </svg></span>
+</nav>
+
+
+<script src="app/ui.js"></script>
+</body>
+</html>

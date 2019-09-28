@@ -1,0 +1,123 @@
+body {
+	font-family: 'Titillium Web', sans-serif;
+	background: #ddd;
+}
+.wrapper {
+	max-width: 80vw;
+	max-height: 80vh;
+	margin: auto;
+	position: relative;
+	background: #fff;
+}
+
+.wrapper section {
+	border: solid black 0.5px;
+	padding: 1em;
+}
+
+h2 {
+	text-align: center;
+	margin:0px;
+	padding:0.5em;
+}
+
+.category {
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	margin: 0.2em;
+}
+.label {
+	text-transform: capitalize;
+}
+.bar {
+	height: 2em;
+	box-sizing: border-box;
+	transition: border-width 1s;
+	border-right: solid black 0px;
+	border-left: solid black 0px;
+}
+.bar span {
+	opacity: 0;
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 1em;
+	padding-right: 1em;
+	height: 2em; /*same as bar */
+	background: hsl(100,50%,90%);
+	transition: 0.5s opacity;
+}
+.category:hover .bar span {
+	opacity: 1;
+}
+.category:hover .bar {
+	border-width: 1em;
+}
+.category:hover {
+	font-weight: bold;
+}
+
+#formContainer {
+	position: absolute;
+	background: #ddd;
+	bottom: 0px;
+	height: 0px; width: 100%;
+	padding: 0px;
+	overflow: hidden;
+	transition: 1s height;
+}
+#formContainer.on {
+	height: 100%;
+}
+
+.formBox {
+	width: 15em;
+	margin: auto;	
+}
+.formBox div {
+	margin-bottom: 1em;
+}
+.formBox label {
+	display: block;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-size: 0.5em;
+	color: #333;
+}
+.formBox label::after {
+	content: ":";
+}
+.formBox input {
+	height: 2em;
+	width: 100%;
+	border: solid 1px black;
+}
+.formBox .button {
+	text-align: center;
+}
+input[type="submit"] {
+	width: 50%;
+	background: hsl(100,50%,30%);
+	color: white;
+}
+
+
+nav {
+	padding: 0.5em;	
+}
+nav span {
+	display: block;
+	margin: auto;
+	max-width: 1em;
+	max-height: 1em;
+	transition: 1s transform;
+}
+
+nav span.down {
+	transform: rotate(180deg);
+}
+
+
+
+
+.hide {display:none;}
+
