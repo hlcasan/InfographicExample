@@ -1,11 +1,11 @@
 <?php 
-require_once("db_connect.php");
+require_once("db_connect.php");//establish DB connection
 
 if ($dbi) {
     // SQL query
     $q = "SELECT category, SUM(amount) as 'sum' FROM infographic GROUP BY category";
 
-    // Array to translate to json
+    // Array of return from SQL query to translate to json
     $rArray = array();
 
     if ($stmt = $dbi->prepare($q)) {
@@ -15,7 +15,7 @@ if ($dbi) {
         $stmt->store_result();
         $stmt->bind_result($rCat,$rSum);
 
-        //Collect results
+        //Collect the results
         while($stmt->fetch()) {
             $rArray[] = [
                 "category"=>$rCat,
@@ -23,10 +23,10 @@ if ($dbi) {
             ];
         }
         
-        //Encode JSON
+        //Encode JSON and return to JS
         echo json_encode($rArray);
         
-        $stmt->close();        
+        $stmt->close(); //end statement
     }
     else {
         echo "no execute statement";

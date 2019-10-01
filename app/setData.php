@@ -8,15 +8,16 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 if ($dbi) {
-    //Build the SQL query
+    //Collect the user’s data
     $cat = $_REQUEST['category'];
     $amount = $_REQUEST['amount'];
 
     if ($cat != "") { //proceed only if a category was provided, otherwise ignore
 
+        //prepare the SQL query
         $q = "INSERT INTO infographic (category, amount) VALUES (?,?)";
     
-        //This should contain 1 when the line is inserted
+        //This should contain 1 when the line is inserted (check line 41)
         $insertedRows = 0;
     
         //prepare statement, execute, store_result
@@ -24,19 +25,18 @@ if ($dbi) {
             //update bind parameter types & variables as required
             //s=string, i=integer, d=double, b=blob
             $insertStmt->bind_param("si", $cat, $amount);
-            $insertStmt->execute();
+            $insertStmt->execute();//run the SQL
             $insertedRows += $insertStmt->affected_rows;
         } else {
             echo "Error";
         }
-    
-        //echo($insertedRows);
+        
+        //end statement
         $insertStmt->close();
-        $dbi->close();
     }
-
+    //close connection
+    $dbi->close();
+    echo "OK: $insertedRows item added";//this is returned to JS
 }
-// Return to main page
-echo "OK: $insertedRows item added";
 
 ?>
