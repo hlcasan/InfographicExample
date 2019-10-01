@@ -64,7 +64,6 @@ var chart = function () {
 				  This assures that each bar will be a different colour than the others
 				  */
 				let light = ((255) / (itemRaw.length - 1)) * c;
-				console.log(light);
 
 				let cat = document.createElement("div");  //Create the category parent
 				cat.className = "category";
