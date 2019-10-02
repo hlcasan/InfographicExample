@@ -1,70 +1,78 @@
 <!doctype html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Example Infographic</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <title>Example Infographic</title>
+    <link rel="stylesheet" href="css/style.css">
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
-<header>
-<h1>Example Infographic</h1>
-</header>
+    <header>
+        <h1>Example Infographic</h1>
+    </header>
 
-<div class="wrapper">
+    <div class="wrapper">
 
-<section>
-<h2>Simple Expenses Report</h2>
-<div class="" id="container">
-<!--This is a sample of what is genetrated by the system for each category found in DB-->
-<!--<div class="category"><span class="label">category 1</span><span class="bar"></span></div>-->
-</div>
-</section>
+        <section>
+            <h2>Simple Expenses Report</h2>
+            <div class="" id="container">
+                <!--This is a sample of what is genetrated by the system for each category found in DB-->
+                <!--<div class="category"><span class="label">category 1</span><span class="bar"></span></div>-->
+            </div>
+        </section>
 
-<section class="hide">
-    <!--This is the Google Chart, which is hidden by CSS-->
-    <h2>Google Chart</h2>
-    <div id="chart_div"></div>
-</section>
-<script src="app/getData.js"></script><!--Collect Data and Build Charts-->
+        <section class="hide">
+            <!--This is the Google Chart, which is hidden by CSS-->
+            <h2>Google Chart</h2>
+            <div id="chart_div"></div>
+        </section>
+        <script src="app/getData.js"></script>
+        <!--Collect Data and Build Charts-->
 
-<section id="formContainer">
-<h2>Add Expense</h2>
-<!--This is the form to add an expense-->
-<div class="formBox"><form id="addExpense">
-    <div><label for="category">Category</label>
-    <input type="text" name="category" list="cat_suggestions">
-    <datalist id="cat_suggestions"></datalist>
-    </div> 
+        <section id="formContainer">
+            <h2>Add Expense</h2>
+            <!--This is the form to add an expense-->
+            <div class="formBox">
+                <form id="addExpense">
+                    <div><label for="category">Category</label>
+                        <input type="text" name="category" list="cat_suggestions">
+                        <datalist id="cat_suggestions"></datalist>
+                    </div>
 
-    <div>
-    <label cor="amount">Amount</label>
-    <input type="number" name="amount" id="amount">
+                    <div>
+                        <label cor="amount">Amount</label>
+                        <input type="number" name="amount" id="amount">
+                    </div>
+
+                    <div class="button">
+                        <input type="submit" value="Add">
+                    </div>
+                </form>
+            </div>
+        </section>
+        <script src="app/setData.js"></script>
+        <!--Insert data into DB-->
+
     </div>
+    <!--wrapper-->
 
-    <div class="button">
-    <input type="submit" value="Add">
-    </div>
-</form></div>
-</section>
-<script src="app/setData.js"></script><!--Insert data into DB-->
+    <nav>
+        <!--This is just the little arrow button to open the form, it’s SVG-->
+        <span id="formBttn"><svg id="arrrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M10,3a7,7,0,1,1-7,7,7,7,0,0,1,7-7m0-2a9,9,0,1,0,9,9,9,9,0,0,0-9-9Z" />
+                <polygon points="10 5.5 5.45 13.38 14.55 13.38 10 5.5" />
+            </svg></span>
+    </nav>
 
-</div><!--wrapper-->
-
-<nav>
-    <!--This is just the little arrow button to open the form, it’s SVG-->
-    <span id="formBttn"><svg id="arrrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-        <path d="M10,3a7,7,0,1,1-7,7,7,7,0,0,1,7-7m0-2a9,9,0,1,0,9,9,9,9,0,0,0-9-9Z"/>
-        <polygon points="10 5.5 5.45 13.38 14.55 13.38 10 5.5"/>
-    </svg></span>
-</nav>
-
-<!--This script handles the interface elements, namely toggling the form panel-->
-<script src="app/ui.js"></script>
+    <!--This script handles the interface elements, namely toggling the form panel-->
+    <script src="app/ui.js"></script>
 </body>
+
 </html>

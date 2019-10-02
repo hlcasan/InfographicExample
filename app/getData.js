@@ -4,26 +4,28 @@ This is the part of the app that SELECTs the data from the DB to build the chart
 
 
 // Load the Visualization API and the corechart package.
-google.charts.load('current', {'packages':['corechart']});
+google.charts.load('current', {
+	'packages': ['corechart']
+});
 
 //This is the main function of the chart, it builds both the Google and Custom charts
 var chart = function () {
 	//The PHP file handling the SQL and DB interaction
 	var php = "app/getData.php";
-	
+
 	//The AJAX call information
 	var xhr = new XMLHttpRequest();
 	var formData = new FormData(); //This is for an HTML form, not used here
 	var itemRaw = new Array(); //This contains the data returned from the DB
 
-    xhr.open("POST", php, true);//Start AJAX call
-    xhr.onreadystatechange = function() {
+	xhr.open("POST", php, true); //Start AJAX call
+	xhr.onreadystatechange = function () {
 		//Check that the connection is fine and that the PHP file answers
-        console.log('readyState: ' + xhr.readyState);
-        console.log('status: ' + xhr.status);
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Everything ok, get the data
-            itemRaw = JSON.parse(xhr.responseText);//Parse the JSON from DB into array
+		console.log('readyState: ' + xhr.readyState);
+		console.log('status: ' + xhr.status);
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// Everything ok, get the data
+			itemRaw = JSON.parse(xhr.responseText); //Parse the JSON from DB into array
 			console.log(itemRaw); // log response
 
 			/*Used to get percentage width for bars
@@ -44,15 +46,15 @@ var chart = function () {
 			data.addColumn('number', 'Amount');
 			//push in the values
 			for (let c in itemRaw) {
-				data.addRow([itemRaw[c].category,Number(itemRaw[c].amount)]);
+				data.addRow([itemRaw[c].category, Number(itemRaw[c].amount)]);
 			}
 			//draw the google chart
 			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-			chart.draw(data);		
+			chart.draw(data);
 
 
 			//CUSTOM CHART//
-			document.getElementById("container").innerHTML = "";//This empties the chart container
+			document.getElementById("container").innerHTML = ""; //This empties the chart container
 			for (let c in itemRaw) { //Loop through all the rows from the DB
 				/*This is to calculate the colour
 				  We use hsl (hue, saturation, lightness)
@@ -65,15 +67,15 @@ var chart = function () {
 				  */
 				let light = ((255) / (itemRaw.length - 1)) * c;
 
-				let cat = document.createElement("div");  //Create the category parent
+				let cat = document.createElement("div"); //Create the category parent
 				cat.className = "category";
-				
-				let label = document.createElement("div");  //Create the label
+
+				let label = document.createElement("div"); //Create the label
 				label.className = "label";
 
-				let bar = document.createElement("div");  //Create the bar
+				let bar = document.createElement("div"); //Create the bar
 				bar.className = "bar";
-				bar.style.background = "hsl("+light+",60%,50%)"; //here we assign the colour of the bar
+				bar.style.background = "hsl(" + light + ",60%,50%)"; //here we assign the colour of the bar
 
 				label.innerHTML = itemRaw[c].category; //put the category name inside the label
 
@@ -82,25 +84,25 @@ var chart = function () {
 					And the others have relative percentages going down. */
 				bar.style.width = (Number(itemRaw[c].amount) / maxAmount) * 100 + "%"; //width is % now
 				bar.innerHTML = "<span>" + itemRaw[c].amount + "</span>"; //the label with the value appears on hover
-				
-				cat.appendChild(label);//put label inside parent
-				cat.appendChild(bar);//put bar inside parent
-				
-				document.getElementById("container").appendChild(cat);//put parent inside chart container
+
+				cat.appendChild(label); //put label inside parent
+				cat.appendChild(bar); //put bar inside parent
+
+				document.getElementById("container").appendChild(cat); //put parent inside chart container
 			}
 
 			// Populate the Suggestions for the form //
-			let datalist = document.getElementById("cat_suggestions");//select datalist element
-			datalist.innerHTML = "";//empty the datalist every time you generate the chart
-			for (let c in itemRaw) {//loop items
-				let option = document.createElement("option");//create option tag
-				option.value = itemRaw[c].category;//set its value
-				datalist.appendChild(option);//put option inside datalist
+			let datalist = document.getElementById("cat_suggestions"); //select datalist element
+			datalist.innerHTML = ""; //empty the datalist every time you generate the chart
+			for (let c in itemRaw) { //loop items
+				let option = document.createElement("option"); //create option tag
+				option.value = itemRaw[c].category; //set its value
+				datalist.appendChild(option); //put option inside datalist
 			}
 
 		}
 	};
-	xhr.send(formData);//send AJAX call
+	xhr.send(formData); //send AJAX call
 };
 
 //This is a callback from Google, but since it calls our function, it serves for the custom form as well
